@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        /* Fullscreen video background */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Dark overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        /* Main logo styling */
+        .logo {
+            display: block;
+            margin: 20px auto;
+            width: 100px;
+        }
+
+        /* Navigation */
+        .navigation {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 0;
+        }
+
+        .navigation a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        .navigation a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main content */
+        main {
+            position: relative;
+            z-index: 1;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1, h2 {
+            margin: 0 0 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0 30px;
+            line-height: 1.5;
+        }
+
+        /* Donate section */
+        .donate-section {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 40px auto;
+            max-width: 600px;
+        }
+
+        .donate-section img {
+            width: 60px;
+            margin-bottom: 10px;
+        }
+
+        .donate-section div {
+            margin-top: 15px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Complaints section */
+        .complaints-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 40px auto;
+            max-width: 600px;
+        }
+
+        input, textarea {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .comments {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .comments p {
+            text-align: left;
+            margin: 10px 0;
+            color: lightgray;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Videos -->
+    <video class="video-bg" id="video1" autoplay muted loop>
+        <source src="vid1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="overlay"></div>
+
+    <!-- Logo -->
+    <img src="logo.png" alt="School Logo" class="logo">
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <a href="home.html">Home</a>
+        <a href="books.html">Books</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <h1>About This Website</h1>
+        <p>
+            This platform was developed for students to access study materials, tutorials, and educational resources with ease. 
+            Our goal is to make learning accessible and effective for everyone.
+        </p>
+
+        <!-- Donate Section -->
+        <div class="donate-section">
+            <h2>Support Us</h2>
+            <p>Your donations help keep this platform running for students worldwide.</p>
+            <button onclick="showDonate()">Donate</button>
+            <div id="donateInfo" style="display: none;">
+                <img src="airtel.png" alt="Airtel Logo">
+                <p><strong>Account Number:</strong> +260771439521</p>
+                <p><strong>Account Name:</strong> Ronnie Chimbwe</p>
+                <p><strong>Network:</strong> Airtel</p>
+            </div>
+        </div>
+
+        <!-- Complaints Section -->
+        <div class="complaints-section">
+            <h2>Complaints or Suggestions</h2>
+            <div class="error" id="error"></div>
+            <input type="text" id="userId" placeholder="Enter your student number or email">
+            <textarea id="complaintText" placeholder="Write your complaint or suggestion here..."></textarea>
+            <button onclick="submitComplaint()">Send Complaint</button>
+            <div class="comments" id="comments">
+                <h3>Public Complaints/Suggestions:</h3>
+                <!-- User complaints will appear here -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        © 2024 Ronnie Chimbwe. All rights reserved.
+    </footer>
+
+    <script>
+        // Show Donate Details
+        function showDonate() {
+            const donateInfo = document.getElementById("donateInfo");
+            donateInfo.style.display = "block";
+        }
+
+        // Submit Complaints
+        function submitComplaint() {
+            const userId = document.getElementById("userId").value.trim();
+            const complaintText = document.getElementById("complaintText").value.trim();
+            const error = document.getElementById("error");
+            
+            if (!userId || !complaintText) {
+                error.textContent = "Please fill in both the student number/email and your complaint.";
+                return;
+            }
+            
+            error.textContent = "";
+            const comments = document.getElementById("comments");
+            const newComment = document.createElement("p");
+            newComment.textContent = `(${userId}): ${complaintText}`;
+            comments.appendChild(newComment);
+            document.getElementById("userId").value = "";
+            document.getElementById("complaintText").value = "";
+            alert("Thank you for your feedback!");
+        }
+    </script>
+</body>
+</html>

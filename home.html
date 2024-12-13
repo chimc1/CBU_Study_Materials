@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBU Study Resources</title>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #fff;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #003366;
+            color: white;
+        }
+        .header img {
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+        }
+
+        /* Welcome Section */
+        #welcome-section {
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 40px;
+        }
+        #welcome-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        #welcome-section p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        #welcome-section .cta {
+            font-size: 1.5rem;
+            margin-top: 30px;
+        }
+
+        /* Media Section (Images and Videos) */
+        .media-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+        .media-container img, .media-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(50%);
+        }
+        .media-container .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quotes Section */
+        .quotes-section {
+            text-align: center;
+            background-color: #003366;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        .quotes-section h3 {
+            font-size: 2rem;
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+        .quotes-section blockquote {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .media-container {
+                height: 300px;
+            }
+            #welcome-section h2 {
+                font-size: 2rem;
+            }
+            #welcome-section p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <img src="logo.png" alt="CBU Logo" id="logo">
+        <h1>CBU Study Resources</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="Books.html">Books</a></li>
+                <li><a href="Search.html">Resources</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content Section -->
+    <main>
+        <!-- Welcome Section -->
+        <section id="welcome-section">
+            <h2>Welcome to CBU Study Resources</h2>
+            <p>This website was created by Ronnie, a first-year Computer Science student at Copperbelt University (CBU) in 2024. It is designed to make it easier for CBU students to access and download study materials.</p>
+            <p>We aim to help students from various schools and programs by providing a platform where they can easily find and download their study resources at the click of a button.</p>
+            <p>If you'd like to join CBU, apply today through the official website: <a href="https://www.cbu.ac.zm" target="_blank" style="color: #ffcc00; text-decoration: underline;">www.cbu.ac.zm</a></p>
+            <div class="cta">"Education is the most powerful weapon which you can use to change the world." - Nelson Mandela</div>
+        </section>
+
+        <!-- Image and Video Section -->
+        <section>
+            <!-- Video Section 1 -->
+            <div class="media-container">
+                <video src="vid1.mp4" autoplay muted loop></video>
+                <div class="overlay"></div>
+            </div>
+            <!-- Video Section 2 -->
+            <div class="media-container">
+                <video src="vid2.mp4" autoplay muted loop></video>
+                <div class="overlay"></div>
+            </div>
+            <!-- Video Section 3 -->
+            <div class="media-container">
+                <video src="vid3.mp4" autoplay muted loop></video>
+                <div class="overlay"></div>
+            </div>
+        </section>
+
+        <!-- Motivational Quotes Section -->
+        <section class="quotes-section">
+            <h3>Inspirational Quotes to Help You Stay Motivated</h3>
+            <blockquote>"The only limit to our realization of tomorrow is our doubts of today." - Franklin D. Roosevelt</blockquote>
+            <blockquote>"Don't watch the clock; do what it does. Keep going." - Sam Levenson</blockquote>
+            <blockquote>"Success is the sum of small efforts, repeated day in and day out." - Robert Collier</blockquote>
+            <blockquote>"You are never too old to set another goal or to dream a new dream." - C.S. Lewis</blockquote>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 CBU Study Resources. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

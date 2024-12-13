@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBU Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f3f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 100px;
+            margin: 0 auto 20px auto;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .login-container a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 14px;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .social-buttons button {
+            width: 48%;
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-google {
+            background-color: #db4437;
+        }
+
+        .social-google:hover {
+            background-color: #a6372d;
+        }
+
+        .social-facebook {
+            background-color: #3b5998;
+        }
+
+        .social-facebook:hover {
+            background-color: #2d4373;
+        }
+
+        .social-buttons img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="logo.png" alt="CBU Logo" class="logo">
+        <h2>CBU Login</h2>
+        <form id="loginForm">
+            <input type="text" id="studentID" placeholder="Student ID (8 digits)" maxlength="8">
+            <input type="password" id="password" placeholder="Password">
+            <button type="submit">Login</button>
+        </form>
+        <a href="#">Recover Password</a>
+        <div class="social-buttons">
+            <button class="social-google" onclick="googleLogin()">
+                <img src="google.png" alt="Google Logo"> Sign in with Google
+            </button>
+            <button class="social-facebook" onclick="facebookLogin()">
+                <img src="facebook.png" alt="Facebook Logo"> Sign in with Facebook
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Validate Student Login
+        const loginForm = document.getElementById("loginForm");
+
+        loginForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const studentID = document.getElementById("studentID").value;
+            const password = document.getElementById("password").value;
+
+            if (studentID.length !== 8 || isNaN(studentID)) {
+                alert("ID Invalid: Please enter an 8-digit Student ID.");
+                return;
+            }
+
+            if (password !== "test1234") {
+                alert("Incorrect Password: Please enter the correct password.");
+                return;
+            }
+
+            alert("Login successful!");
+            window.location.href = "home.html";
+        });
+
+        // Google Login Functionality
+        function googleLogin() {
+            alert("Redirecting to Google Login...");
+            window.location.href = "https://accounts.google.com/o/oauth2/auth?client_id=YOUR_GOOGLE_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=token&scope=email";
+        }
+
+        // Facebook Login Functionality
+        function facebookLogin() {
+            alert("Redirecting to Facebook Login...");
+            window.location.href = "https://www.facebook.com/v12.0/dialog/oauth?client_id=YOUR_FACEBOOK_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=token&scope=email";
+        }
+    </script>
+</body>
+</html>

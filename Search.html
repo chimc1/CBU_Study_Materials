@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBU Study Resources</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #003366;
+            color: white;
+        }
+        .header img {
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #003366;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .form-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        select, button, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .course-display {
+            margin-top: 20px;
+        }
+        .course-item {
+            background-color: #f1f1f1;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .course-item button {
+            padding: 10px;
+            background-color: #003366;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .course-item button:hover {
+            background-color: #0055a5;
+        }
+        .search-books-courses {
+            margin-top: 30px;
+        }
+        .search-box {
+            margin-top: 20px;
+        }
+        .search-box input[type="text"] {
+            width: 80%;
+        }
+        .search-box button {
+            width: 15%;
+            background-color: #003366;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="logo.png" alt="CBU Logo" id="logo">
+        <h1>CBU Study Resources</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="Books.html">Books</a></li>
+                <li><a href="Search.html">Resources</a></li>
+                <li><a href="About.html">About</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+        <div class="form-container">
+            <h2>Search for Study Resources</h2>
+            <label for="school">Select School:</label>
+            <select id="school" onchange="updatePrograms()">
+                <option value="">--Select School--</option>
+                <option value="mathematics_natural_sciences">School of Mathematics and Natural Sciences</option>
+                <option value="ict">School of Information Communication and Technology</option>
+                <option value="humanities">School of Humanities</option>
+                <option value="mines_minerals">School of Mines and Minerals</option>
+                <option value="business">School of Business</option>
+            </select>
+
+            <label for="program">Select Program:</label>
+            <select id="program" onchange="updateCourses()">
+                <option value="">--Select Program--</option>
+            </select>
+
+            <label for="academic-year">Select Academic Year:</label>
+            <select id="academic-year">
+                <option value="">--Select Academic Year--</option>
+                <option value="1">Year 1</option>
+                <option value="2">Year 2</option>
+                <option value="3">Year 3</option>
+                <option value="4">Year 4</option>
+                <option value="5">Year 5</option>
+            </select>
+
+            <label for="course">Select Course:</label>
+            <select id="course">
+                <option value="">--Select Course--</option>
+            </select>
+
+            <button onclick="searchResources()">Search Study Resources</button>
+
+            <div class="course-display" id="course-display"></div>
+
+            <div class="search-books-courses">
+                <button onclick="searchBooksCourses()">Search for Books and Courses</button>
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="search-course" placeholder="Search for a course by name...">
+                <button onclick="searchByCourseName()">Search</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CBU Study Resources. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const data = {
+            mathematics_natural_sciences: {
+                programs: {
+                    1: ["Mathematics 101", "Advanced Calculus", "Linear Algebra", "Differential Equations", "Statistical Methods"],
+                    2: ["Physics 101", "Mechanics", "Thermodynamics", "Quantum Mechanics", "Electromagnetism"],
+                    3: ["Chemistry 101", "Organic Chemistry", "Inorganic Chemistry", "Physical Chemistry", "Biochemistry"],
+                    4: ["Biology 101", "Genetics", "Microbiology", "Ecology", "Environmental Science"]
+                }
+            },
+            ict: {
+                programs: {
+                    1: ["Introduction to Programming", "Data Structures", "Algorithms", "Web Development", "Database Systems"],
+                    2: ["Computer Networks", "Operating Systems", "Software Engineering", "Cybersecurity", "Mobile App Development"],
+                    3: ["Artificial Intelligence", "Machine Learning", "Deep Learning", "Natural Language Processing", "Computer Vision"],
+                    4: ["Network Security", "Cloud Computing", "Big Data Analytics", "Blockchain", "Ethical Hacking"]
+                }
+            },
+            humanities: {
+                programs: {
+                    1: ["Introduction to Philosophy", "Psychology 101", "Sociology", "Ethics", "Cultural Studies"],
+                    2: ["Linguistics", "Anthropology", "Political Science", "International Relations", "History of Philosophy"],
+                    3: ["Literature", "Comparative Literature", "Creative Writing", "Film Studies", "Cultural Criticism"]
+                }
+            },
+            mines_minerals: {
+                programs: {
+                    1: ["Geology 101", "Mining Engineering", "Mineral Processing", "Environmental Impact of Mining", "Mining Safety"],
+                    2: ["Petroleum Engineering", "Geotechnical Engineering", "Hydrogeology", "Mining Geophysics", "Geochemistry"]
+                }
+            },
+            business: {
+                programs: {
+                    1: ["Introduction to Economics", "Financial Accounting", "Business Law", "Organizational Behavior", "Marketing Management"],
+                    2: ["Managerial Accounting", "Business Statistics", "Human Resource Management", "Strategic Management", "Entrepreneurship"],
+                    3: ["International Business", "Corporate Finance", "Supply Chain Management", "Operations Management", "Business Ethics"]
+                }
+            }
+        };
+
+        function updatePrograms() {
+            const schoolSelect = document.getElementById("school");
+            const programSelect = document.getElementById("program");
+            const courseSelect = document.getElementById("course");
+
+            programSelect.innerHTML = '<option value="">--Select Program--</option>';
+            courseSelect.innerHTML = '<option value="">--Select Course--</option>';
+
+            const school = schoolSelect.value;
+            if (school && data[school]) {
+                const programs = data[school].programs;
+                for (const program in programs) {
+                    const option = document.createElement("option");
+                    option.value = program;
+                    option.textContent = `Program ${program}`;
+                    programSelect.appendChild(option);
+                }
+            }
+        }
+
+        function updateCourses() {
+            const programSelect = document.getElementById("program");
+            const courseSelect = document.getElementById("course");
+
+            courseSelect.innerHTML = '<option value="">--Select Course--</option>';
+
+            const program = programSelect.value;
+            if (program) {
+                const courses = data[document.getElementById("school").value].programs[program];
+                for (const course of courses) {
+                    const option = document.createElement("option");
+                    option.value = course;
+                    option.textContent = course;
+                    courseSelect.appendChild(option);
+                }
+            }
+        }
+
+        function searchResources() {
+            const course = document.getElementById("course").value;
+            const courseDisplay = document.getElementById("course-display");
+
+            if (course) {
+                const courseItem = document.createElement("div");
+                courseItem.classList.add("course-item");
+                courseItem.innerHTML = `
+                    <p>${course}</p>
+                    <button>Download</button>
+                `;
+                courseDisplay.appendChild(courseItem);
+            } else {
+                alert("Please select a course.");
+            }
+        }
+
+        function searchBooksCourses() {
+            window.location.href = "search_books_courses.html"; // Replace with actual page URL
+        }
+
+        function searchByCourseName() {
+            const searchTerm = document.getElementById("search-course").value.toLowerCase();
+            const courseDisplay = document.getElementById("course-display");
+            courseDisplay.innerHTML = '';  // Clear previous search results
+
+            for (const school in data) {
+                for (const program in data[school].programs) {
+                    const courses = data[school].programs[program];
+                    courses.forEach(course => {
+                        if (course.toLowerCase().includes(searchTerm)) {
+                            const courseItem = document.createElement("div");
+                            courseItem.classList.add("course-item");
+                            courseItem.innerHTML = `
+                                <p>${course}</p>
+                                <button>Download</button>
+                            `;
+                            courseDisplay.appendChild(courseItem);
+                        }
+                    });
+                }
+            }
+
+            if (courseDisplay.innerHTML === '') {
+                courseDisplay.innerHTML = '<p>No courses found.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
